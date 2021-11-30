@@ -1,0 +1,47 @@
+using System;
+
+namespace Mandelbrot
+{
+    class Program
+    {
+        private static int Mandelfunctie(double a, double b, double x, double y)
+        {
+            int t = 0;
+            double afstand = 0;
+            while (t < 100 && afstand < 2)
+            {
+                double mandelx = a * a - b * b + x;
+                a = mandelx;
+                double mandely = 2 * a * b + y;
+                b = mandely;
+                t++;
+                afstand = Math.Sqrt(a*a + b*b);
+            }
+            return t;
+            
+        }
+
+        
+        static void Main(string[] args)
+        {
+
+            double a, b, y, x;
+            a = Double.Parse(Console.ReadLine());
+            b = Double.Parse(Console.ReadLine());
+            x = Double.Parse(Console.ReadLine());
+            y = Double.Parse(Console.ReadLine());
+            Console.WriteLine(Mandelfunctie(a,b,x,y));
+            int t = Mandelfunctie(a, b, x, y);
+
+            if (t < 100)
+            {
+                //plot point
+            }
+            else
+            {
+                //do not
+            }
+
+        }
+    }
+}
