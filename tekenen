@@ -1,0 +1,29 @@
+  class Tekenen : Forms
+    {
+        public Tekenen()
+        {
+            this.Text = "Mandelbrot";
+            this.BackColor = Color.Beige;
+            this.Size = new Size(720, 720);
+
+            Label centrumx, centrumy, schaal, max;
+            centrumx = new Label();
+            centrumx.Text = "Gecentreerd op x";
+            centrumx.Location = new Point (30, 30);
+
+            centrumy = new Label();
+            centrumy.Text = "Gecentreerd op y";
+            centrumy.Location = new Point(30, 30+60);
+
+            schaal = new Label();
+            schaal.Text = "Schaal";
+            schaal.Location = new Point(30+100, 30);
+
+            max = new Label();
+            max.Text = "max";
+            max.Location = new Point(30+100, 30+60);
+
+            Button knop;
+            knop = new Button();
+            knop.Text = "O.K.";
+            knop.Location = new Point(30+100+100, 30);
