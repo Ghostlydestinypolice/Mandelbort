@@ -1,68 +1,85 @@
 using System;
 
-namespace Mandelbrot
+namespace Mandelbrotfiguur
 {
-    class Program
+    class Program //: Form
     {
-        double a = 0;
+        /*double a = 0;
         double b = 0;
-        double x = Double.Parse(Console.ReadLine());
-        double y = Double.Parse(Console.ReadLine());
+        double x;
+        double y;*/
+        //int zwartwit = 1;
+        //int keuze;
+
         private static int Mandelfunctie(double a, double b, double x, double y)
         {
             int t = 0;
             double afstand = 0;
+            double max = 100; //input maxbox
             //double beginafstand = Math.Sqrt(x*x + y*y);
-            while (t < 100 && afstand < 2) //&& beginafstand < 2
+            while (t < max && afstand < 2) //&& beginafstand < 2
             {
                 double mandelx = a * a - b * b + x;
                 a = mandelx;
                 double mandely = 2 * a * b + y;
                 b = mandely;
                 t++;
-                afstand = Math.Sqrt(a*a + b*b);
+                afstand = Math.Sqrt(a * a + b * b);
             }
             return t;
-            
+
         }
 
-        
+
         static void Main(string[] args)
         {
+            double a = 0;
+            double b = 0;
+            double x;
+            double y;
+            bool zwartwit = true;
+            bool kleur = false;
 
-            /*double a, b, y, x;
-            a = 0;
-            b = 0;
-            x = Double.Parse(Console.ReadLine());
-            y = Double.Parse(Console.ReadLine()); 
-            int t = Mandelfunctie(a, b, x, y);
-            Console.WriteLine(t); */
-
-        }
-
-        private void tekenpunt(object o, painteventsarg pea)
-        {
-            Graphics gr = pea.graphics;
-            for (int loperx = 0; loperx < this.ClientSize; loperx++)
+            for (int loperx = 0; loperx < 50; loperx++)
             {
-                for (int lopery = 0; lopery < this.ClientSize; lopery++)
+                x = loperx / (50/2.5);
+                for (int lopery = 0; lopery < 50; lopery++)
                 {
-                    if (Mandelfunctie(a, b, x, y) % 2 == 0)
+                    y = lopery / (50/2.5);
+                    if (Mandelfunctie(a, b, x, y) % 2 == 0 && zwartwit == true)
                     {
-                        gr.FillRectangle(Brushes.White, loperx, lopery, 1, 1);
+                        Console.WriteLine("Black");
                     }
-                    else if (Mandelfunctie(a, b, x, y) % 2 != 0)
+                    else if (Mandelfunctie(a, b, x, y) % 2 != 0 && zwartwit == true)
                     {
-                        gr.FillRectangle(Brushes.White, loperx, lopery, 1, 1);
+                        Console.WriteLine("White");
+                    }
+                    else if (Mandelfunctie(a, b, x, y) % 100 == 0 && kleur == true)
+                    {
+                        Console.WriteLine("Red");
+                    }
+                    else if (Mandelfunctie(a, b, x, y) % 100 != 0 && zwartwit == true)
+                    {
+                        Console.WriteLine("Black");
                     }
                 }
             }
+
         }
 
-        private void tekenscherm (object o, painteventsarg pea)
+        public double scalerx(double xb/*input van xbox , input van ybox*/)
         {
-            Graphics gr = pea.graphics;
-            
+            double scaling = 0;
+            int panel1w = 0;
+            /*scalings formule*/ scaling = xb * panel1w;
+            return scaling;
         }
-    }
-}
+
+        public double scalery(double yb/*input van xbox , input van ybox*/)
+        {
+            double scaling = 0;
+            int panel1h = 0;
+            /*scalings formule*/
+            scaling = yb * panel1h;
+            return scaling;
+        }
