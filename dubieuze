@@ -1,0 +1,17 @@
+public double scalerx(double xb/*input van xbox , input van ybox*/)
+        {
+            double scaling = 0;
+            int panel1w = 0;
+            /*scalings formule*/ scaling = xb * panel1w;
+            return scaling;
+        }
+        
+public double scalery(double yb/*input van xbox , input van ybox*/)
+        {
+            double scaling = 0;
+            int panel1h = 0;
+            /*scalings formule*/
+            scaling = yb * panel1h;
+            return scaling;
+        }
+        
