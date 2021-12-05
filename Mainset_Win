@@ -70,11 +70,11 @@ namespace MandelbrotForms
                     }
                     else if (Mandelfunctie(a, b, x, y) % 100 == 0 && kleur == true)
                     {
-                        Console.WriteLine("Red");
+                        gr.FillRectangle(Brushes.Red, loperx, lopery, 1, 1); 
                     }
-                    else if (Mandelfunctie(a, b, x, y) % 100 != 0 && zwartwit == true)
+                    else if (Mandelfunctie(a, b, x, y) % 100 != 0 && kleur == true)
                     {
-                        Console.WriteLine("Black");
+                        gr.FillRectangle(Brushes.Green, loperx, lopery, 1, 1);
                     }
                 }
             }
