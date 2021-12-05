@@ -1,0 +1,110 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace MandelbrotForms
+{
+    public partial class Form1 : Form
+    {
+        //gedeelte var's
+        double a = 0;
+        double b = 0;
+        double x;
+        double y;
+        int loperx;
+        int lopery;
+        bool zwartwit = true; //todo verbinden aan component
+        bool kleur = false; //todo verbinden aan component
+        int max =  100;
+
+        //methode on van een punt het mandelgetal te krijgen
+        private int Mandelfunctie(double a, double b, double x, double y)
+        {
+            int t = 0;
+            double afstand = 0;
+            while (t < max && afstand < 2) 
+            {
+                double mandelx = a * a - b * b + x;
+                a = mandelx;
+                double mandely = 2 * a * b + y;
+                b = mandely;
+                t++;
+                afstand = Math.Sqrt(a * a + b * b);
+            }
+            return t;
+
+        }
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+            //perongeluk toegevoegd
+        }
+
+        //paneltekenmethode
+        private void panel1_Paint(object sender, PaintEventArgs pea)
+        {
+            Graphics gr = pea.Graphics;
+            for (loperx = 0; loperx < this.panel1.Width; loperx++)
+            {
+                x = loperx / (panel1.Width/3.3); // (loperx - (panel1.Width / 4)) / (panel1.Width / 4);
+                for (lopery = 0; lopery < this.panel1.Height; lopery++)
+                {
+                    y = lopery / (panel1.Height/3.3); // (lopery - (panel1.Height / 4)) / (panel1.Height / 4);
+                    if (Mandelfunctie(a, b, x, y) % 2 == 0 && zwartwit == true)
+                    {
+                        gr.FillRectangle(Brushes.Black, loperx, lopery, 1, 1);
+                    }
+                    else if (Mandelfunctie(a, b, x, y) % 2 != 0 && zwartwit == true)
+                    {
+                        gr.FillRectangle(Brushes.White, loperx, lopery, 1, 1);
+                    }
+                    else if (Mandelfunctie(a, b, x, y) % 100 == 0 && kleur == true)
+                    {
+                        Console.WriteLine("Red");
+                    }
+                    else if (Mandelfunctie(a, b, x, y) % 100 != 0 && zwartwit == true)
+                    {
+                        Console.WriteLine("Black");
+                    }
+                }
+            }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox4_TextChanged(object sender, EventArgs e)
+        {
+            max = int.Parse(textBox4.Text);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            loperx = 0;
+            lopery = 0;
+            Invalidate(true);
+        }
+    }
+}
